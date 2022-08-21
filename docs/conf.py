@@ -38,6 +38,8 @@ epub_show_urls = 'footnote'
 
 # add sourcecode to path
 import sys, os
+import logging
+logging.basicConfig(level=logging.INFO)
 sys.path.insert(0, os.path.abspath('../src'))
 
 ############################
@@ -67,18 +69,23 @@ else:
  
 # tell the theme which language to we're currently building
 html_context['current_language'] = current_language
- 
+
 # SET CURRENT_VERSION
 from git import Repo
 repo = Repo( search_parent_directories=True )
- 
+logging.info('----------');
+logging.info(repo);
 if 'current_version' in os.environ:
    # get the current_version env var set by buildDocs.sh
    current_version = os.environ['current_version']
+   logging.info('--if---');
+   logging.info(current_version);
 else:
    # the user is probably doing `make html`
    # set this build's current version by looking at the branch
    current_version = repo.active_branch.name
+   logging.info('--else---');
+   logging.info(current_version);
  
 # tell the theme which version we're currently on ('current_version' affects
 # the lower-left rtd menu and 'version' affects the logo-area version)
@@ -87,6 +94,8 @@ html_context['version'] = current_version
  
 # POPULATE LINKS TO OTHER LANGUAGES
 html_context['languages'] = [ ('en', '/' +REPO_NAME+ '/en/' +current_version+ '/') ]
+logging.info('--REPO NAmE:---');
+logging.info(REPO_NAME);
  
 languages = [lang.name for lang in os.scandir('locales') if lang.is_dir()]
 for lang in languages:

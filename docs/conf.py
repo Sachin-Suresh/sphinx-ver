@@ -102,8 +102,8 @@ logging.info(REPO_NAME);
 #languages = [lang.name for lang in os.scandir('locales') if lang.is_dir()]
 #for lang in languages:
 #   html_context['languages'].append( (lang, '/' +REPO_NAME+ '/' +lang+ '/' +current_version+ '/') )
-logging.info('--Languages:---');
-logging.info(os.scandir('locales'));
+#logging.info('--Languages:---');
+#logging.info(os.scandir('locales'));
 
 # POPULATE LINKS TO OTHER VERSIONS
 html_context['versions'] = list()

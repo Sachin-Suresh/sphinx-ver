@@ -72,6 +72,7 @@ html_context['current_language'] = current_language
 
 # SET CURRENT_VERSION
 from git import Repo
+from pprint import pprint
 repo = Repo( search_parent_directories=True )
 logging.info('----------');
 logging.info(repo);
@@ -83,7 +84,8 @@ if 'current_version' in os.environ:
 else:
    # the user is probably doing `make html`
    # set this build's current version by looking at the branch
-   current_version = repo.active_branch.name
+   #current_version = repo.active_branch.name   ISSUE HERE
+   current_version = repo.head.object.hexsha
    logging.info('--else---');
    logging.info(current_version);
  
